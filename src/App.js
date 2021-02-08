@@ -1,23 +1,60 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import Header from './Components/Header';
+import Footer from './Components/Footer';
 import './App.css';
 
 function App() {
+
+  const [newMember, setNewMember] = useState('');
+  const [crewList, setCrewList] = useState([]);
+
+  useEffect(()=>{
+    Axios.get("https://tech-challenge-wild-code.herokuapp.com/api/get").then((response)=>{
+      setCrewList(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
+  const submitNewMember = () =>{
+    Axios.post("https://tech-challenge-wild-code.herokuapp.com/api/insert", {newMember: newMember}).then(()=>{
+      alert("Nouveau membre ajouter à l'équipage!");
+    });
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+
+      {/*-- Main section --*/}
+      <main>
+        
+        {/*--Add Member Form Component--*/}
+        <div>
+              {/*-- New member form --*/}
+            <h2>Ajouter un(e) Argonaute</h2>
+            <form className="new-member-form">
+                <label htmlFor="name">Nom de l&apos;Argonaute</label>
+                <input id="name" name="name" type="text" placeholder="Charalampos" onChange={(e)=> {
+                  setNewMember(e.target.value);
+                }}/>
+                <button type="submit" onClick={submitNewMember}>Envoyer</button>
+            </form>
+          </div>
+        
+        {/*-- Member list Display Component --*/}
+        <div>
+            <h2>Membres de l'équipage</h2>
+            <section className="member-list">
+                {crewList.map((item)=>{
+                  return <div className="member-item">{item.crew_membername}</div>
+                })}
+            </section>
+          </div>
+      </main>
+
+      <Footer />
+
     </div>
   );
 }
