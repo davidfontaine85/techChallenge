@@ -7,14 +7,14 @@ import './App.css';
 function App() {
 
   const [newMember, setNewMember] = useState('');
-  //const [crewList, setCrewList] = useState([]);
+  const [crewList, setCrewList] = useState([]);
 
-  /*useEffect(()=>{
+  useEffect(()=>{
     Axios.get("https://tech-challenge-wild-code.herokuapp.com/api/get").then((response)=>{
       setCrewList(response.data);
       console.log(response.data);
     });
-  }, []);*/
+  }, []);
 
   const submitNewMember = () =>{
     Axios.post("https://tech-challenge-wild-code.herokuapp.com/api/insert", {newMember: newMember}).then(()=>{
@@ -46,11 +46,11 @@ function App() {
         <div>
             <h2>Membres de l'équipage</h2>
             <section className="member-list">
-                {/*crewList.map((item, i)=>{
+                {crewList.map((item, i)=>{
                   return (
                     <div key={i} className="member-item">{item.crew_membername}</div>
                   );
-                })*/}
+                })}
             </section>
           </div>
       </main>
