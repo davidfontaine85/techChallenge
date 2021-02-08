@@ -46,9 +46,9 @@ function App() {
         <div>
             <h2>Membres de l'équipage</h2>
             <section className="member-list">
-                {crewList.map((item)=>{
+                {crewList.map((item, i)=>{
                   return (
-                    <div className="member-item">{item.crew_membername}</div>
+                    <div key={i} className="member-item">{item.crew_membername}</div>
                   );
                 })}
             </section>
