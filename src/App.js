@@ -47,7 +47,9 @@ function App() {
             <h2>Membres de l'équipage</h2>
             <section className="member-list">
                 {crewList.map((item)=>{
-                  return <div className="member-item">{item.crew_membername}</div>;
+                  return (
+                    <div className="member-item">{item.crew_membername}</div>
+                  );
                 })}
             </section>
           </div>
