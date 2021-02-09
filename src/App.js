@@ -11,7 +11,6 @@ function App() {
 
   useEffect(()=>{
     Axios.get("https://tech-challenge-wild-code.herokuapp.com/api/get").then((response)=>{
-      console.log(response);
       setCrewList(response);
       console.log(crewList);
     });
