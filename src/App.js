@@ -19,10 +19,10 @@ function App() {
 
   useEffect(()=> {
     const fetchData = async () => {
-      const result = await axios(
-        'https://tech-challenge-wild-code.herokuapp.com/api/get'
-      );
-      setCrewList(result.data);
+      Axios.get('https://tech-challenge-wild-code.herokuapp.com/api/get').then((response)=> {
+        setCrewList(response.data);
+        console.log(response.data);
+      });
     }
     fetchData();
   }, []);
