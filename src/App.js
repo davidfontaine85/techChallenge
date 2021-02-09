@@ -25,7 +25,7 @@ function App() {
       setCrewList(result.data);
     }
     fetchData();
-  });
+  }, []);
 
   const submitNewMember = () =>{
     Axios.post("https://tech-challenge-wild-code.herokuapp.com/api/insert", {newMember: newMember}).then(()=>{
