@@ -7,12 +7,12 @@ import './App.css';
 function App() {
 
   const [newMember, setNewMember] = useState('');
-  const [crewList, setCrewList] = useState([]);
+  //const [crewList, setCrewList] = useState([]);
 
   useEffect(()=>{
     Axios.get("https://tech-challenge-wild-code.herokuapp.com/api/get").then((response)=>{
-      setCrewList(response);
-      console.log("Hello World");
+      //setCrewList(response);
+      console.log(response.data);
     });
   }, []);
 
@@ -47,7 +47,6 @@ function App() {
             <h2>Membres de l'équipage</h2>
             <section className="member-list">
                 {/*crewList.map((item)=>{<div key={item.id} className="member-item">{item.crew_membername}</div>})*/}
-                {crewList}
             </section>
           </div>
       </main>
