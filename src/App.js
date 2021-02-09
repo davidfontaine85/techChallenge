@@ -12,7 +12,7 @@ function App() {
   useEffect(()=>{
     Axios.get("https://tech-challenge-wild-code.herokuapp.com/api/get").then((response)=>{
       setCrewList(response);
-      console.log('this is wich containe crewList now : ' + crewList);
+      console.log("Hello World");
     });
   }, []);
 
