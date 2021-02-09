@@ -3,18 +3,29 @@ import Axios from 'axios';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import './App.css';
+import axios from 'axios';
 
 function App() {
 
   const [newMember, setNewMember] = useState('');
-  //const [crewList, setCrewList] = useState([]);
+  const [crewList, setCrewList] = useState([]);
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     Axios.get("https://tech-challenge-wild-code.herokuapp.com/api/get").then((response)=>{
       //setCrewList(response);
       console.log(response.data);
     });
-  }, []);
+  }, []);*/
+
+  useEffect(()=> {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://tech-challenge-wild-code.herokuapp.com/api/get'
+      );
+      setCrewList(result.data);
+    }
+    fetchData();
+  });
 
   const submitNewMember = () =>{
     Axios.post("https://tech-challenge-wild-code.herokuapp.com/api/insert", {newMember: newMember}).then(()=>{
@@ -46,7 +57,7 @@ function App() {
         <div>
             <h2>Membres de l'équipage</h2>
             <section className="member-list">
-                {/*crewList.map((item)=>{<div key={item.id} className="member-item">{item.crew_membername}</div>})*/}
+                {crewList.map((item)=>{<div key={item.id} className="member-item">{item.crew_membername}</div>})}
             </section>
           </div>
       </main>
